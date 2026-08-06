@@ -1,5 +1,6 @@
 name: publicar imagen en dockerhub
-on: 
+
+on:
   push:
     branches: [ "main" ]
 
@@ -7,7 +8,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar codigo 
+      - name: Descargar codigo
         uses: actions/checkout@v3
 
       - name: Inicio sesion en Docker Hub

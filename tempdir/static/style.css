@@ -1,0 +1,152 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #7fffd4; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+
+.card, .container {
+    background-color: #1e293b;
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 100%;
+}
+
+.badge {
+    background-color: #22c55e;
+    color: #000000;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.subtitle, p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+
+.form-container, .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-group, .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 14px;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+input[type="text"] {
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background-color: #0f172a;
+    color: #ffffff;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #22c55e;
+}
+
+
+button, .btn {
+    background-color: #22c55e;
+    color: #000000;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 15px;
+    transition: background-color 0.2s;
+}
+
+button:hover, .btn:hover {
+    background-color: #16a34a;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+h2, h3 {
+    font-size: 18px;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid #334155;
+    font-size: 14px;
+}
+
+th {
+    color: #94a3b8;
+    font-weight: 600;
+    background-color: #0f172a;
+}
+
+td {
+    color: #e2e8f0;
+}
+
+tr:hover {
+    background-color: #334155;
+}
+
+.empty {
+    text-align: center;
+    color: #64748b;
+    padding: 20px;
+}

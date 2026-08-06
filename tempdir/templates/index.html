@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENA CBA - Gestión de Aprendices</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <span class="badge">SENA CBA</span>
+        <h1>Centro de Biotecnología Agropecuaria</h1>
+        <p class="subtitle">Gestión de Aprendices ADSO</p>
+
+        <form action="/registrar" method="POST" class="form-container">
+            <div class="form-group">
+                <label for="nombre_completo">Nombre Completo</label>
+                <input type="text" id="nombre_completo" name="nombre_completo" placeholder="Ej: Adriana Lucía Díaz" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="numero_documento">Número de Documento</label>
+                <input type="text" id="numero_documento" name="numero_documento" placeholder="Ej: 1001234567" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="ficha">Número de Ficha</label>
+                <input type="text" id="ficha" name="ficha" placeholder="Ej: 2689123" required>
+            </div>
+
+            <button type="submit" class="btn">Registrar Aprendiz</button>
+        </form>
+
+        <hr>
+
+        <h2>Aprendices Registrados</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Completo</th>
+                        <th>Documento</th>
+                        <th>Ficha</th>
+                        <th>Fecha Registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in aprendices %}
+                    <tr>
+                        <td>{{ a.id }}</td>
+                        <td>{{ a.nombre_completo }}</td>
+                        <td>{{ a.numero_documento }}</td>
+                        <td>{{ a.ficha }}</td>
+                        <td>{{ a.creado_en }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="empty">No hay registros almacenados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

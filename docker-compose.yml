@@ -1,5 +1,5 @@
 services:
- nginx-proxy-manager:
+  nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: proxy-manager
     restart: always
@@ -28,7 +28,7 @@ services:
       timeout: 5s
       retries: 3
 
-    uptime-kuma:
+  uptime-kuma:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
     restart: always
@@ -36,7 +36,6 @@ services:
       - "3001:3001"
     volumes:
       - uptime-kuma-data:/app/data
-
     networks:
       - red-cba
 
@@ -82,7 +81,6 @@ volumes:
   mysql-data:
   uptime-kuma-data:
     name: uptime-kuma-data 
-
 
 networks:
   red-cba:

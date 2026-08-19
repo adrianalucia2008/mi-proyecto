@@ -87,7 +87,7 @@ def registrar():
     return redirect(url_for('index'))
     @sample.route("/version")
 def version():
-    return "<h2>Bienvenido - Deploy verificado: contenedor actualizado correctamente </h2>"
+    return "<h2>Bienvenido - Deploy verificado: contenedor ha sido activado </h2>"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050)

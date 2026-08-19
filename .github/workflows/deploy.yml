@@ -25,7 +25,7 @@ jobs:
           tags: adrianaluciadaza/mi-proyecto:latest
 
       - name: Desplegar en servidor cloud
-        uses: appleboy/ssh-action@v1.0.
+        uses: appleboy/ssh-action@v1.0.3  # <-- Asegúrate de incluir el 3 al final
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
@@ -33,4 +33,5 @@ jobs:
           script: |
             cd ~/mi-proyecto
             docker compose pull backend
-            docker compose up -d
+            docker compose up -dmpose pull backend
+              docker compose up -d

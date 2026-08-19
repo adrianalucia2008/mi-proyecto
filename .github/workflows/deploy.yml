@@ -54,5 +54,4 @@ jobs:
           script: |
             cd ~/mi-proyecto
             docker compose pull backend
-            docker compose up -dmpose pull backend
-              docker compose up -d
+            docker compose up -d

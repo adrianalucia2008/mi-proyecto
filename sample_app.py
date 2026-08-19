@@ -30,7 +30,7 @@ def inicializar_bd():
                 cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME};")
             conn.close()
 
-            # 2. Crear la tabla aprendices si no existe (Paso 1)
+            # 2. Crear la tabla aprendices si no existe
             conn = obtener_conexion(con_db=True)
             with conn.cursor() as cursor:
                 cursor.execute("""
@@ -85,9 +85,10 @@ def registrar():
             print(f"Error al insertar en la BD: {e}")
 
     return redirect(url_for('index'))
-    @sample.route("/version")
+
+@app.route('/version')
 def version():
-    return "<h2>Bienvenido - Deploy verificado: contenedor ha sido activado </h2>"
+    return "<h2>Bienvenido - Deploy verificado: contenedor ha sido activado v2</h2>"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050)

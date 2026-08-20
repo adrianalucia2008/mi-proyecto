@@ -52,7 +52,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           timeout: 10m
-          command_timeout: 10m
+          command_timeout: 20m
           script: |
             echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
             cd ~/mi-proyecto

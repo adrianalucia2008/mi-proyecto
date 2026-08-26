@@ -59,6 +59,7 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+          trivyignores: '.trivyignore'
 
       - name: Subir la imagen a Docker Hub
         run: docker push adrianaluciadaza/sample-api:v1

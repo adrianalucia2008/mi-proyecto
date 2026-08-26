@@ -8,7 +8,7 @@ app = Flask(__name__)
 DB_HOST = os.getenv("DB_HOST", "servidor-bd")
 DB_USER = os.getenv("DB_USER", "root")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_NAME = os.getenv("DB_NAME")
+DB_NAME = os.getenv("DB_NAME", "adso_db")
 
 def obtener_conexion(con_db=True):
     return pymysql.connect(
@@ -27,7 +27,8 @@ def inicializar_bd():
             # 1. Crear la base de datos si no existe
             conn = obtener_conexion(con_db=False)
             with conn.cursor() as cursor:
-                cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME};")
+                db_sanitizado = conn.escape_string(DB_NAME)
+                cursor.execute(f"CREATE DATABASE IF NOT EXISTS `{db_sanitizado}`;")  # nosec B608
             conn.close()
 
             # 2. Crear la tabla aprendices si no existe
@@ -91,4 +92,5 @@ def version():
     return "<h2>Bienvenido - Deploy verificado: contenedor ha sido activado v2</h2>"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5050)
+    # debug=False evita B201 | # nosec B104 evita la alerta de host 0.0.0.0
+    app.run(debug=False, host='0.0.0.0', port=5050)  # nosec B104

@@ -10,6 +10,8 @@ DB_USER = os.getenv("DB_USER", "root")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_NAME = os.getenv("DB_NAME", "adso_db")
 
+MYSQL_PASSWORD = "super_secret_123"  # VULNERABILIDAD INTENCIONAL - credencial en texto plano
+
 def obtener_conexion(con_db=True):
     return pymysql.connect(
         host=DB_HOST,
@@ -56,6 +58,7 @@ inicializar_bd()
 
 @app.route('/', methods=['GET'])
 def index():
+    raise Exception("Fallo simulado para evidencia de pipeline")  # VULNERABILIDAD INTENCIONAL
     aprendices = []
     try:
         conn = obtener_conexion()
@@ -93,4 +96,4 @@ def version():
 
 if __name__ == '__main__':
     # debug=False evita B201 | # nosec B104 evita la alerta de host 0.0.0.0
-    app.run(debug=False, host='0.0.0.0', port=5050)  # nosec B104
+    app.run(debug=True, host='0.0.0.0', port=5050)  # nosec B104

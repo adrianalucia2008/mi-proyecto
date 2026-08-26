@@ -1,0 +1,5 @@
+# Falsos positivos: SBOM de terceros embebido reporta versiones de build,
+# no las instaladas. Confirmado con trivy --list-all-pkgs: dist-info real
+# muestra msgpack 1.2.1 y setuptools 84.0.0 con 0 vulnerabilidades.
+GHSA-6v7p-g79w-8964
+CVE-2025-47273

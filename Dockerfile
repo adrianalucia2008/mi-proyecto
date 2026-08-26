@@ -1,10 +1,8 @@
-FROM python:3.12-slim
+FROM python:3.9-slim-bullseye
 
 WORKDIR /home/myapp
 
-
 RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
-
 
 RUN pip install --no-cache-dir --upgrade pip "setuptools>=78.1.1" "msgpack>=1.2.1"
 

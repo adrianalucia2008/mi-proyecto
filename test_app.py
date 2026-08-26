@@ -6,4 +6,4 @@ def test_ejemplo():
 def test_home_status_code():
     client = app.test_client()
     response = client.get('/')
-    assert response.status_code == 200
+    assert response.status_code == 200  # nosec B101

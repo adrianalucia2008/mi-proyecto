@@ -4,21 +4,21 @@ services:
     container_name: proxy-manager
     restart: always
     ports:
-      - "80:80" #Http
-      - "81:81" #Administración de la API
-      - "443:443" #Https
+      - "80:80" # Http
+      - "81:81" # Administración de la API
+      - "443:443" # Https
     volumes:
       - ./npm_data:/data
       - ./npm_letsencrypt:/etc/letsencrypt
     networks:
       - red-cba
 
-    dozzle:
+  dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle
     restart: always
     volumes:
-      - /var/run/docker.sock:var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8080:8080"
     networks:
@@ -38,6 +38,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+    networks:
+      - red-cba
 
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -77,7 +79,7 @@ services:
     container_name: mi-phpmyadmin
     restart: always
     ports:
-      - "8080:80"
+      - "8081:80" # Cambiado a 8081 para no chocar con Dozzle
     environment:
       PMA_HOST: servidor-bd
       PMA_USER: root

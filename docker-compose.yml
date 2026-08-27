@@ -40,8 +40,8 @@ services:
     mem_limit: 250m
 
   app_backend:
-    image: luuxia/app-backend:latest
-    container_name: app-backend
+    image: backend:latest
+    container_name: backend
     restart: always
     ports:
       - "5050:5050"

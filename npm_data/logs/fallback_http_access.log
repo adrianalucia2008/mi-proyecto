@@ -1,0 +1,7 @@
+[27/Aug/2026:22:54:27 +0000] 200 - GET http localhost "/" [Client 172.19.0.1] [Length 568] [Gzip 1.86] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 OPR/134.0.0.0" "-"
+[27/Aug/2026:22:54:28 +0000] 400 - GET http localhost "/favicon.ico" [Client 127.0.0.1] [Length 230] [Gzip -] "-" "-"
+[27/Aug/2026:22:54:31 +0000] 304 - GET http localhost "/" [Client 172.19.0.1] [Length 0] [Gzip -] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 OPR/134.0.0.0" "-"
+[27/Aug/2026:22:54:32 +0000] 304 - GET http localhost "/" [Client 172.19.0.1] [Length 0] [Gzip -] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 OPR/134.0.0.0" "-"
+[27/Aug/2026:22:54:32 +0000] 304 - GET http localhost "/" [Client 172.19.0.1] [Length 0] [Gzip -] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 OPR/134.0.0.0" "-"
+[27/Aug/2026:22:54:32 +0000] 304 - GET http localhost "/" [Client 172.19.0.1] [Length 0] [Gzip -] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 OPR/134.0.0.0" "-"
+[27/Aug/2026:22:54:33 +0000] 304 - GET http localhost "/" [Client 172.19.0.1] [Length 0] [Gzip -] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 OPR/134.0.0.0" "-"

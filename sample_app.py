@@ -5,6 +5,7 @@ import time
 
 app = Flask(__name__)
 
+# Configuración mediante variables de entorno (Evita B105 - credenciales quemadas)
 DB_HOST = os.getenv("DB_HOST", "servidor-bd")
 DB_USER = os.getenv("DB_USER", "root")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
@@ -21,7 +22,7 @@ def obtener_conexion(con_db=True):
     )
 
 def inicializar_bd():
-    # Intentar hasta que MySQL termine de iniciar
+    """Intenta conectar y estructurar la base de datos al arrancar el contenedor."""
     for i in range(10):
         try:
             # 1. Crear la base de datos si no existe
@@ -51,7 +52,7 @@ def inicializar_bd():
             print(f"Esperando a MySQL... ({e})")
             time.sleep(3)
 
-# Inicializar BD al arrancar
+# Inicializar BD al arrancar la app
 inicializar_bd()
 
 @app.route('/', methods=['GET'])

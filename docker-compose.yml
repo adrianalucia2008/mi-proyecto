@@ -47,8 +47,10 @@ services:
       - "5050:5050"
     environment:
       FLASK_ENV: development
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      DB_HOST: servidor-bd
+      DB_USER: root
+      DB_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      DB_NAME: ${MYSQL_DATABASE}
     networks:
       - red-cba
     depends_on:
@@ -91,4 +93,3 @@ volumes:
     name: mysql-data
   uptime-kuma-data:
     name: uptime-kuma-data
-    

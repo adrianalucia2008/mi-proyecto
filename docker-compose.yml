@@ -1,4 +1,5 @@
 services:
+
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: proxy-manager
@@ -13,33 +14,51 @@ services:
     networks:
       - red-cba
 
-  dozzle:
-    image: amir20/dozzle:latest
-    container_name: dozzle
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - "8080:8080"
-    networks:
-      - red-cba
-
   servidor-bd:
-    image: mysql:5.7
+    image: mariadb:10.11
     container_name: servidor-bd
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+    command: >
+      --innodb-buffer-pool-size=64M
+      --innodb-log-file-size=16M
+      --key-buffer-size=8M
+      --max-connections=50
+      --bind-address=0.0.0.0
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - red-cba
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    mem_limit: 250m
+
+  app_backend:
+    image: luuxia/app-backend:latest
+    container_name: app-backend
+    restart: always
+    ports:
+      - "5050:5050"
+    environment:
+      FLASK_ENV: development
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    networks:
+      - red-cba
+    depends_on:
+      servidor-bd:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5050/ || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 3
-    networks:
-      - red-cba
 
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -52,50 +71,23 @@ services:
     networks:
       - red-cba
 
-  backend:
-    image: adrianaluciadaza/sample-api:v1
-    container_name: backend
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
     restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - "5050:5050"
-    environment:
-      DB_HOST: servidor-bd
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
-    depends_on:
-      servidor-bd:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD-SHELL", "python3 -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:5050/\")' || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      - "8080:8080"
     networks:
       - red-cba
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: mi-phpmyadmin
-    restart: always
-    ports:
-      - "8081:80"
-    environment:
-      PMA_HOST: servidor-bd
-      PMA_USER: root
-      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    depends_on:
-      servidor-bd:
-        condition: service_healthy
-    networks:
-      - red-cba
-
-volumes:
-  mysql-data:
-  uptime-kuma-data:
-    name: uptime-kuma-data
 
 networks:
   red-cba:
-    driver: bridge
+    name: red-cba
 
+volumes:
+  mysql-data:
+    name: mysql-data
+  uptime-kuma-data:
+    name: uptime-kuma-data nough to do that, I could go to the gym.

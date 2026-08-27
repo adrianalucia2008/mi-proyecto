@@ -90,4 +90,4 @@ volumes:
   mysql-data:
     name: mysql-data
   uptime-kuma-data:
-    name: uptime-kuma-data enen como yo las estoy pidiendo. Entonces, pónganle atención a eso y revisen también los checkpoints, que es el enlace.
+    name: uptime-kuma-data 

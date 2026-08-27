@@ -1,17 +1,18 @@
+    cat << 'EOF' > docker-compose.yml
 services:
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: proxy-manager
     restart: always
     ports:
-      - "80:80" # Http
-      - "81:81" # Administración de la API
-      - "443:443" # Https
+      - "80:80"
+      - "81:81"
+      - "443:443"
     volumes:
       - ./npm_data:/data
       - ./npm_letsencrypt:/etc/letsencrypt
     networks:
-      - red-cba
+      - red-cba I think. the show. I hope you can try out a lot of things.
 
   dozzle:
     image: amir20/dozzle:latest
@@ -93,7 +94,7 @@ services:
 volumes:
   mysql-data:
   uptime-kuma-data:
-    name: uptime-kuma-data 
+    name: uptime-kuma-data
 
 networks:
   red-cba:

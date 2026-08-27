@@ -40,7 +40,7 @@ services:
     mem_limit: 250m
 
   app_backend:
-    image: backend:latest
+    image: adrianaluciadaza/sample-api:latest
     container_name: backend
     restart: always
     ports:

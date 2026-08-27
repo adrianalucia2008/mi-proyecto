@@ -78,4 +78,8 @@ jobs:
             cd ~/mi-proyecto
             git pull origin main
             docker compose pull app_backend
+<<<<<<< HEAD
             docker compose up -d --remove-orphans
+=======
+            docker compose up -d --remove-orphans d the other day on the abanico de plumas, I find these commentaries, you know, that the abanico that we are going to be using is the abanico de quina de...
+>>>>>>> 093c5e7 (ci: agrega flujo de despliegue continuo y docker-compose actualizado)

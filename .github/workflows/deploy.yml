@@ -2,11 +2,12 @@ name: Publicar Imagen en Docker Hub
 
 on:
   push:
-    branches: ["main", "feature/vulnerabilidades"]
+    branches: ["main, feature/vulnerabilidades"]
 
 jobs:
   test-and-security:
     runs-on: ubuntu-latest
+
     steps:
       - name: Descargar código
         uses: actions/checkout@v4
@@ -14,7 +15,7 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Instalar dependencias
         run: |
@@ -22,7 +23,7 @@ jobs:
           pip install -r requirements.txt
           pip install pytest bandit
 
-      - name: Escaneo de seguridad (bandit)
+      - name: Escaneo de seguridad (Bandit)
         run: bandit -r . --exclude ./test_app.py
 
       - name: Ejecutar pruebas pytest
@@ -31,6 +32,7 @@ jobs:
   build-and-push:
     needs: test-and-security
     runs-on: ubuntu-latest
+
     steps:
       - name: Descargar código
         uses: actions/checkout@v4
@@ -41,26 +43,28 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Construir y subir imagen
+      - name: Construir imagen
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: true
+          push: false
+          load: true
           no-cache: true
-          tags: |
-            adrianaluciadaza/sample-api:latest
-            adrianaluciadaza/sample-api:v1
+          tags: adrianaluciadaza/sample-api:latest
 
-      - name: Escanear imagen con Trivy
+      - name: Escanear contenedor con Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'adrianaluciadaza/sample-api:latest'
-          format: 'table'
-          exit-code: '1'
+          image-ref: "adrianaluciadaza/sample-api:latest"
+          format: "table"
+          exit-code: "1"
           ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
-          trivyignores: '.trivyignore'
+          vuln-type: "os,library"
+          severity: "CRITICAL,HIGH"
+          trivyignores: ".trivyignore"
+
+      - name: Subir la imagen a Docker Hub
+        run: docker push adrianaluciadaza/sample-api:latest
 
       - name: Desplegar en servidor cloud
         uses: appleboy/ssh-action@v1.0.3

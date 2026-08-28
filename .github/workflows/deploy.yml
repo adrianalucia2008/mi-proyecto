@@ -23,7 +23,7 @@ jobs:
           pip install pytest bandit
 
       - name: Escaneo de seguridad (bandit)
-        run: bandit -r . -x ./venv
+        run: bandit -r . --exclude ./test_app.py
 
       - name: Ejecutar pruebas pytest
         run: pytest
